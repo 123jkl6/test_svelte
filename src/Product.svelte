@@ -1,3 +1,19 @@
+<script>
+  import { createEventDispatcher } from "svelte";
+  import Button from "./Button.svelte";
+
+  export let productTitle;
+  export let productPrice;
+  export let productDescription;
+
+  const dispatch = createEventDispatcher();
+  function addToCart() {
+    //assume product title is unique. 
+    dispatch("addcart",productTitle);
+  }
+  
+</script>
+
 <style>
   div {
     margin: 1rem;
@@ -18,19 +34,11 @@
   p {
     margin: 0.25rem 0;
   }
-  button {
-    font: inherit;
-    padding:0.15rem 0.5rem;
-    background:#d10057;
-    border:1px solid #d10057;
-    color:white;
-
-  }
 </style>
 
 <div>
-  <h1>TITLE</h1>
-  <h2>PRICE</h2>
-  <p>DESCRIPTION</p>
-  <button>Add to Cart</button>
+  <h1>{productTitle}</h1>
+  <h2>{productPrice}</h2>
+  <p>{productDescription}</p>
+  <Button on:click={addToCart}>Add to Cart</Button>
 </div>
